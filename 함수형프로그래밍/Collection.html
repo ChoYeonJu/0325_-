@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="js/_.js"></script>
+</head>
+
+<body>
+
+    <script>
+        var users = [
+            { id: 1, name: 'id', age: 36 },
+            { id: 2, name: 'bg', age: 32 },
+            { id: 3, name: 'jm', age: 32 },
+            { id: 4, name: 'pg', age: 26 },
+            { id: 5, name: 'ha', age: 25 },
+            { id: 6, name: 'ji', age: 33 },
+            { id: 7, name: 'mp', age: 24 },
+        ]
+            // 컬렉션 중심 프로그래밍의 4가지 유형
+            // 1. 수집 - map, values, pluck
+            console.log(    // 내부에 있는 값을 수집
+                _map(users, function(user){
+                    return user.name;
+                })
+            )
+
+            function _values(data){
+                return _map(data, function(val){
+                    return val;
+                })
+            }
+
+            console.log(_values(user[0]));
+            
+            // 2. 거르기 - filter, reject, compact, without 등
+            // 3. 찾아내기 - find some, every
+            // 4. 접기 - reduce, min, max, group_by, count_by
+
+
+    </script>
+
+</body>
+
+</html>

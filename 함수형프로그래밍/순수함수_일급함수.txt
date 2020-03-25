@@ -1,0 +1,59 @@
+순수 함수
+function add(a,b){
+    return a+b;
+}
+
+동일한 인자를 주면 동일한 결과를 반환
+
+var c = 10;
+function add2(a,b){
+    return a+b+c;
+}
+외부의 상태에 영향을 미치는 다른 출력이 있으면
+부수 효과라함 , 순수 함수가 아님
+
+var obj1 = {val:10};
+function add2(obj){
+    obj.val+=b;
+}
+
+일급함수
+함수를 값으로 다룰수 있음
+변수에 함수를 담을수 있음
+var f1= function(a){
+    return a*a;
+}
+
+var f2= add;
+function f3(f){
+    return function(f);
+    return f();
+}
+함수를 인자로 받아서 함수를 반환하는 형식
+console.log(f3(function(){return 10;}));
+
+// add_maker 
+
+function add_maker(){
+    return function(b){
+        return a+b;
+    }
+}
+
+var add10 = add_maker(10);
+변수에 함수를 담아서 사용
+console.log(add10(20));
+
+순수함수들을 조합하여 큰로직을 만들어가는 프로그램
+function f4(f1,f2,f3){
+    return f3(f1() +f2());  
+}
+
+f4(
+    //순수함수
+    function(){return 2;}
+    function(){return 1;}
+    function(a){return a*a;}
+)
+
+함수평 프로그래밍 : 애플리케이션, 함수의 구성요소, 언어자체를 함수처럼 여기도록 만듦

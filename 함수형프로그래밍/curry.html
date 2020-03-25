@@ -1,0 +1,170 @@
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        var users = [
+            { id: 1, name: 'id', age: 36 },
+            { id: 2, name: 'bg', age: 32 },
+            { id: 3, name: 'jm', age: 32 },
+            { id: 4, name: 'pg', age: 26 },
+            { id: 5, name: 'ha', age: 25 },
+            { id: 6, name: 'ji', age: 33 },
+            { id: 7, name: 'mp', age: 24 },
+        ]
+
+        // 30세 미만
+        var temp_users = [];
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].age >= 30) {
+                temp_users.push(users[i]);
+            }
+        }
+        console.log(temp_users);
+
+        // 30세 이상
+        var names = [];
+        for (var i = 0; i < temp_users.length; i++) {
+            names.push(temp_users[i].name);
+        }
+        console.log(names);
+
+        //30세 미만 users 제외
+        var temp_users = [];
+        for (var i = 0; i < temp_users.length; i++) {
+            if (users[i].age < 30) {
+                temp_users.push(users[i]);
+            }
+        }
+        console.log(temp_users);
+
+        //30 세 미만 users 나이 수집
+        var ages = [];
+        for (var i = 0; i < temp_users.length; i++) {
+
+            ages.push(temp_users[i].age);
+        }
+        console.log(ages);
+
+        // _filter 로 리팩토링
+
+        function _filter(users, predi) {
+            var new_list = [];
+            for (var i = 0; i < users.length; i++) {
+                if (predi(users[i])) {
+                    new_list.push(users[i]);
+                }
+            }
+            return new_list;
+        }
+
+        // 재사용성 극대화
+        function _map(list, mapper){
+            var new_list=[];
+            for(var i = 0;i<list.length;i++){
+                new_list.push(mapper(list[i]));
+            }
+            return new_list;
+        }
+
+        var over_30 = _filter(users, function(user){
+            return user.age >=30;
+        })
+        var names = _map(over_30, function(user){
+            return user.name;
+        })
+
+        conosle.log(names);
+        var under_30=_filter(users, function(user){
+            return user.age<30;
+        })
+        var ages = _map(under_30, function(user){
+            return user.age;
+        })
+        console.log(ages);
+
+      
+
+        var ages = _map(under)
+
+        console.log(
+            _filter(users, function (user) {
+                return users.age >= 30;
+            })
+        )
+
+        console.log()
+        console.log(
+            _filter([1, 2, 3, 4], function (num) {
+                return num % 2;
+            })
+        );
+
+        _map(
+            _filter(user, function(user){
+                return
+            })
+        )
+
+        // 커링 함수가 실행되면 또다시 함수를 실행 
+        function _curry(fn){
+            return function(a){
+                return function(b){
+                    return fn(a,b);
+                }
+            }
+        }
+
+        var add = _curry(function(a,b){
+            return a+b;
+        })
+
+        var add10=add(10);
+        console.log(add10(5));
+        
+        console.log(add(10,5));
+        add(10,5)
+
+
+        //reduce 재귀적으로 함수를 실행
+        function _reduce(list, iter, memo){
+            _each(list, function(val){
+                memo = iter(memo, val);
+            });
+            return memo;
+        }
+
+        console.log(_reduce([1,2,3],add,0));
+        //결과 6
+
+        memo = add(0,1)
+
+        memo = add(memo,2);
+        memo = add(memo, 3);
+        return memo;
+        
+        // 파이프라인(reduce 함수를 통해서 생성)
+        // 함수들의 인자로 받아서 함수들을 연속적으로 실행해주는 함수
+
+        function _pipe(){
+            var fns = arguments;
+            return function(arg){
+                return _reduce(fns, function(){
+                    return fn(arg);
+                },arg)
+            }
+        }
+
+        function _go(){
+            var fns = arguments;
+        }
+
+        var f1 = _pipe(
+            function(a){return a+1;},   //1+1
+            function(a){return a*2;}    // 2*2
+        )
+    </script>
+</body>
+
+</html>
