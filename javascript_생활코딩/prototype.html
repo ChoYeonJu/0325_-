@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+
+    <script>
+        function Ultra(){}
+        Ultra.prototype.ultraProp=true;
+
+        function Super(){}
+        Super.prototype=new Ultra();
+
+        function Sub(){}
+        Sub.prototype=new Super(); // 상속받고자하는 객체는 복제본을 사용
+                                    //super.prototype 을 사용할 경우 부모에게도 영향을 끼침
+        Sub.prototype.ultraProp = 2;
+
+        var o = new Sub();
+        // o.ultraProp = 1;
+        console.log(o.ultraProp); // 결과 2
+
+        
+    </script>
+</body>
+</html>
